@@ -2,6 +2,8 @@ package erp_teacher.ui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -12,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.border.EmptyBorder;
 
+import erp_teacher.dto.Employee;
 import erp_teacher.dto.Title;
 import erp_teacher.service.TitleService;
 import erp_teacher.ui.content.TitlePanel;
@@ -76,6 +79,10 @@ public class TitleManager extends JFrame implements ActionListener {
 		deleteItem.addActionListener(popupMenuListner);
 		popMenu.add(deleteItem);
 		
+		JMenuItem empListByTitleItem = new JMenuItem("동일 직책 사원 보기");
+		empListByTitleItem.addActionListener(popupMenuListner);
+		popMenu.add(empListByTitleItem);
+		
 		return popMenu;
 	}
 	
@@ -94,6 +101,18 @@ public class TitleManager extends JFrame implements ActionListener {
 					pContent.setTitle(updateTitle);
 					btnAdd.setText("수정");
 				}
+				if (e.getActionCommand().contentEquals("동일 직책 사원 보기")) {
+					Title title = pList.getItem();
+					List<Employee> list = service.showEmployeeGroupByTitle(title);
+					
+					List<String> strList = list
+							.parallelStream()
+							.map( s->{ return String.format("%s(%d)", s.getEmpName(), s.getEmpNo()); })
+							.collect(Collectors.toList());
+					
+					JOptionPane.showMessageDialog(null, strList, "동일 직책 사원", JOptionPane.INFORMATION_MESSAGE);
+				}
+				
 			}catch (NotSelectedException | SqlConstraintException e2) {
 				JOptionPane.showMessageDialog(null, e2.getMessage());
 			}catch (Exception e2) {
