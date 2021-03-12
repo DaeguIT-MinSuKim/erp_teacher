@@ -6,8 +6,10 @@ import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.border.EmptyBorder;
 
 import erp_teacher.dto.Title;
@@ -55,8 +57,36 @@ public class TitleManager extends JFrame implements ActionListener {
 		pList.setService(service);
 		pList.loadData();
 		contentPane.add(pList);
+		
+		JPopupMenu popupMenu = createPopupMenu();
+		pList.setPopupMenu(popupMenu);
 	}
 
+	private JPopupMenu createPopupMenu() {
+		JPopupMenu popMenu = new JPopupMenu();
+
+		JMenuItem updateItem = new JMenuItem("수정");
+		popMenu.add(updateItem);
+
+		JMenuItem deleteItem = new JMenuItem("삭제");
+		deleteItem.addActionListener(popupMenuListner);
+		popMenu.add(deleteItem);
+		
+		return popMenu;
+	}
+	
+	ActionListener popupMenuListner = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (e.getActionCommand().equals("삭제")) {
+				Title delTitle = pList.getItem();
+				service.removeTitle(delTitle);
+				pList.loadData();
+				JOptionPane.showMessageDialog(null, delTitle + "삭제 되었습니다.");
+			}
+		}
+	};
+	
 	public void actionPerformed(ActionEvent e) {
 		try {
 			if (e.getSource() == btnAdd) {

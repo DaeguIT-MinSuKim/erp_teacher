@@ -35,5 +35,13 @@ public class TitleTablePanel extends AbstractCustomTablePanel<Title> {
 	public void setService(TitleService service) {
 		this.service = service;
 	}
-
+	
 }
+
+
+
+
+
+
+
+

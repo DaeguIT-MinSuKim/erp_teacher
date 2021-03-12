@@ -16,4 +16,8 @@ public class TitleService {
 	public void addTitle(Title title) {
 		dao.insertTitle(title);
 	}
+	
+	public void removeTitle(Title title) {
+		dao.deleteTitle(title.gettNo());
+	}
 }

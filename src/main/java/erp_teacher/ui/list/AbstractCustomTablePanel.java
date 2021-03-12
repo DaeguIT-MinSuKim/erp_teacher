@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.util.List;
 
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -14,6 +15,8 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+import erp_teacher.dto.Title;
+
 @SuppressWarnings("serial")
 public abstract class AbstractCustomTablePanel<T> extends JPanel {
 	protected JTable table;
@@ -23,9 +26,19 @@ public abstract class AbstractCustomTablePanel<T> extends JPanel {
 		initialize();
 	}
 
+	public T getItem() {
+		int idx = table.getSelectedRow();
+		return list.get(idx);
+	}
+	
+	
 	public void loadData() {
 		initList();
 		setList();
+	}
+	
+	public void setPopupMenu(JPopupMenu popMenu) {
+		table.setComponentPopupMenu(popMenu);
 	}
 	
 	public abstract void initList();
