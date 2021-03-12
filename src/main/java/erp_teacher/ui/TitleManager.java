@@ -16,6 +16,8 @@ import erp_teacher.dto.Title;
 import erp_teacher.service.TitleService;
 import erp_teacher.ui.content.TitlePanel;
 import erp_teacher.ui.exception.InvalidCheckException;
+import erp_teacher.ui.exception.NotSelectedException;
+import erp_teacher.ui.exception.SqlConstraintException;
 import erp_teacher.ui.list.TitleTablePanel;
 
 @SuppressWarnings("serial")
@@ -31,6 +33,7 @@ public class TitleManager extends JFrame implements ActionListener {
 		service = new TitleService();
 		initialize();
 	}
+	
 	private void initialize() {
 		setTitle("직책 관리");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -78,11 +81,17 @@ public class TitleManager extends JFrame implements ActionListener {
 	ActionListener popupMenuListner = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if (e.getActionCommand().equals("삭제")) {
-				Title delTitle = pList.getItem();
-				service.removeTitle(delTitle);
-				pList.loadData();
-				JOptionPane.showMessageDialog(null, delTitle + "삭제 되었습니다.");
+			try {
+				if (e.getActionCommand().equals("삭제")) {
+					Title delTitle = pList.getItem();
+					service.removeTitle(delTitle);
+					pList.loadData();
+					JOptionPane.showMessageDialog(null, delTitle + "삭제 되었습니다.");
+				}
+			}catch (NotSelectedException | SqlConstraintException e2) {
+				JOptionPane.showMessageDialog(null, e2.getMessage());
+			}catch (Exception e2) {
+				e2.printStackTrace();
 			}
 		}
 	};
@@ -92,8 +101,9 @@ public class TitleManager extends JFrame implements ActionListener {
 			if (e.getSource() == btnAdd) {
 				actionPerformedBtnAdd(e);
 			}
-		}catch (InvalidCheckException e1) {
+		}catch (InvalidCheckException | SqlConstraintException e1) {
 			JOptionPane.showMessageDialog(null, e1.getMessage());
+//			pContent.clearTf();
 		}catch (Exception e1) {
 			e1.printStackTrace();
 		}
@@ -101,9 +111,9 @@ public class TitleManager extends JFrame implements ActionListener {
 	
 	protected void actionPerformedBtnAdd(ActionEvent e) {
 		Title title = pContent.getTitle();
-		
 		service.addTitle(title);
-		JOptionPane.showMessageDialog(null, title + " 추가했습니다.");
 		pList.loadData();
+		pContent.clearTf();
+		JOptionPane.showMessageDialog(null, title + " 추가했습니다.");
 	}
 }

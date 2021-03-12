@@ -16,6 +16,7 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 import erp_teacher.dto.Title;
+import erp_teacher.ui.exception.NotSelectedException;
 
 @SuppressWarnings("serial")
 public abstract class AbstractCustomTablePanel<T> extends JPanel {
@@ -28,6 +29,9 @@ public abstract class AbstractCustomTablePanel<T> extends JPanel {
 
 	public T getItem() {
 		int idx = table.getSelectedRow();
+		if (idx == -1) {
+			throw new NotSelectedException();
+		}
 		return list.get(idx);
 	}
 	
