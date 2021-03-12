@@ -15,7 +15,6 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-import erp_teacher.dto.Title;
 import erp_teacher.ui.exception.NotSelectedException;
 
 @SuppressWarnings("serial")

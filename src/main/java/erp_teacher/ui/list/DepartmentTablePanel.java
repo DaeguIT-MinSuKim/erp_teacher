@@ -1,7 +1,5 @@
 package erp_teacher.ui.list;
 
-import java.security.Provider.Service;
-
 import javax.swing.SwingConstants;
 
 import erp_teacher.dto.Department;
@@ -9,7 +7,7 @@ import erp_teacher.service.DepartmentService;
 
 @SuppressWarnings("serial")
 public class DepartmentTablePanel extends AbstractCustomTablePanel<Department> {
-	private DepartmentService service = new DepartmentService();
+	private DepartmentService service;
 
 	@Override
 	public void initList() {
@@ -34,4 +32,8 @@ public class DepartmentTablePanel extends AbstractCustomTablePanel<Department> {
 		return new String[] { "부서번호", "부서명", "위치" };
 	}
 
+
+	public void setService(DepartmentService service) {
+		this.service = service;
+	}
 }
