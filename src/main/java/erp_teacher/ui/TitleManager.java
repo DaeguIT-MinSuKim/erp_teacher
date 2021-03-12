@@ -96,14 +96,29 @@ public class TitleManager extends JFrame implements ActionListener {
 					pList.loadData();
 					JOptionPane.showMessageDialog(null, delTitle + "삭제 되었습니다.");
 				}
+				
 				if (e.getActionCommand().equals("수정")) {
 					Title updateTitle = pList.getItem();
 					pContent.setTitle(updateTitle);
 					btnAdd.setText("수정");
 				}
+				
 				if (e.getActionCommand().contentEquals("동일 직책 사원 보기")) {
+					/*
+					 * 1. EmployeeDao -> selectEmployeeByTitle() 추가
+					 * 2. EmployeeDaoImpl -> selectEmployeeByTitle() 구현
+					 * 3. EmployeeDaoTest -> Test하기
+					 * 4. TitleService -> EmployeeDaoImpl field 추가 및 메서드 추가
+					 * 5. 아래 기능 추가
+					 * 6. 예외찾아서 추가하기 (신규 직책 추가 시 NullPointException)
+					 */
 					Title title = pList.getItem();
 					List<Employee> list = service.showEmployeeGroupByTitle(title);
+					
+					if (list == null) {
+						JOptionPane.showMessageDialog(null, "해당 사원이 없음", "동일 직책 사원", JOptionPane.INFORMATION_MESSAGE);
+						return;
+					}
 					
 					List<String> strList = list
 							.parallelStream()
