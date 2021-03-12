@@ -27,7 +27,7 @@ dependencies {
 
 jar {
     version = 1.0
-    mainClassName= 'erp_teacher.Erp'
+    mainClassName= 'erp_teacher.Main'
     baseName= 'Erp'
     appendix = 'bin'
     
