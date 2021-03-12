@@ -44,6 +44,8 @@ public class TitlePanel extends JPanel {
 	public void setTitle(Title title) {
 		tfNo.setText(String.valueOf(title.gettNo()));
 		tfName.setText(title.gettName());
+		
+		tfNo.setEditable(false);
 	}
 	
 	public Title getTitle() {
@@ -62,5 +64,9 @@ public class TitlePanel extends JPanel {
 	public void clearTf() {
 		tfNo.setText("");
 		tfName.setText("");
+		
+		if (!tfNo.isEditable()) {
+			tfNo.setEditable(true);
+		}
 	}
 }

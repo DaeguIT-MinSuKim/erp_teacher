@@ -20,4 +20,8 @@ public class TitleService {
 	public void removeTitle(Title title) {
 		dao.deleteTitle(title.gettNo());
 	}
+	
+	public void modifyTitle(Title title) {
+		dao.updateTitle(title);
+	}
 }
