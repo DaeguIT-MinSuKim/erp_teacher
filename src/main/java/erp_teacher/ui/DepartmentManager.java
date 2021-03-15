@@ -26,7 +26,7 @@ import erp_teacher.ui.list.DepartmentTablePanel;
 
 @SuppressWarnings("serial")
 public class DepartmentManager extends JFrame implements ActionListener {
-
+	private JButton btnClear;
 	private JPanel contentPane;
 	private JButton btnAdd;
 	private InterfaceItem<Department> pContent;
@@ -135,7 +135,7 @@ public class DepartmentManager extends JFrame implements ActionListener {
 			}
 		}
 	};
-	private JButton btnClear;
+
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnClear) {
