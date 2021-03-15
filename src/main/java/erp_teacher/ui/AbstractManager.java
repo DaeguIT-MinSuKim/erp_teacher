@@ -12,7 +12,6 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.border.EmptyBorder;
 
-import erp_teacher.dto.Department;
 import erp_teacher.ui.content.AbstractContent;
 import erp_teacher.ui.exception.InvalidCheckException;
 import erp_teacher.ui.exception.SqlConstraintException;
