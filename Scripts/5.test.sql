@@ -1,5 +1,9 @@
 select * from title;
 
+select *
+  from employee
+ where empno = 1003;
+
 -- 해당 직책을 가지고 있는 사원목록을 검색
 select empname, empno
   from employee e 

@@ -22,6 +22,7 @@ import erp_teacher.dto.Department;
 import erp_teacher.dto.Employee;
 import erp_teacher.dto.Title;
 import erp_teacher.service.EmployeeService;
+import erp_teacher.ui.exception.InvalidCheckException;
 
 @SuppressWarnings("serial")
 public class EmployeePanel extends JPanel implements ItemListener {
@@ -109,13 +110,16 @@ public class EmployeePanel extends JPanel implements ItemListener {
 	}
 
 	public void setEmployee(Employee employee) {
-//		Employee(int empNo, String empName, 
-//		Title title, Employee manager, 
-//		int salary, Department dept)
-		
+		tfNo.setText(employee.getEmpNo() + "");
+		tfName.setText(employee.getEmpName());
+		cmbTitle.setSelectedItem(employee.getTitle());
+		cmbDept.setSelectedItem(employee.getDept());
+		cmbManager.setSelectedItem(employee.getManager());
+		spinSalary.setValue(employee.getSalary());
 	}
 	
 	public Employee getEmployee() {
+		validCheck();
 		int empNo = Integer.parseInt(tfNo.getText().trim());
 		String empName = tfName.getText().trim();
 		Title title = (Title) cmbTitle.getSelectedItem();
@@ -125,8 +129,22 @@ public class EmployeePanel extends JPanel implements ItemListener {
 		return new Employee(empNo, empName, title, manager, salary, dept);
 	}
 	
+	private void validCheck() {
+		if (tfNo.getText().contentEquals("") || tfName.getText().equals("") 
+				|| cmbTitle.getSelectedIndex() == -1 
+				|| cmbDept.getSelectedIndex() == -1
+				|| cmbManager.getSelectedIndex() == -1) {
+			throw new InvalidCheckException();
+		}
+	}
+
 	public void clearTf() {
-		
+		tfNo.setText("");
+		tfName.setText("");
+		cmbTitle.setSelectedIndex(-1);
+		cmbDept.setSelectedIndex(-1);
+		cmbManager.setSelectedIndex(-1);
+		spinSalary.setValue(2000000);
 	}
 	
 	public void itemStateChanged(ItemEvent e) {
