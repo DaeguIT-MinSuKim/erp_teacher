@@ -2,6 +2,8 @@ package erp_teacher;
 
 import java.awt.EventQueue;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -10,9 +12,6 @@ import javax.swing.border.EmptyBorder;
 
 import erp_teacher.ui.DepartmentManager;
 import erp_teacher.ui.TitleManager;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class Main extends JFrame implements ActionListener {

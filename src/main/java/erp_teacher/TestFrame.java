@@ -97,7 +97,7 @@ public class TestFrame extends JFrame implements ActionListener {
 		}
 	}
 	protected void actionPerformedBtnAdd(ActionEvent e) {
-		Employee emp = pEmpItem.getEmployee();
+		Employee emp = pEmpItem.getItem();
 		String message = String.format(
 				"empNo %d%n"
 				+ "empName %s%n"
@@ -122,7 +122,7 @@ public class TestFrame extends JFrame implements ActionListener {
 				, new Employee(4377)
 				, 3000000
 				, new Department(2));
-		pEmpItem.setEmployee(emp);
+		pEmpItem.setItem(emp);
 	}
 	protected void actionPerformedBtnCancel(ActionEvent e) {
 		pEmpItem.clearTf();

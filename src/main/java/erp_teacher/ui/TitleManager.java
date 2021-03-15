@@ -26,13 +26,12 @@ import erp_teacher.ui.list.AbstractCustomTablePanel;
 import erp_teacher.ui.list.TitleTablePanel;
 
 @SuppressWarnings("serial")
-public class TitleManager extends AbstractManager<Title> 
+public class TitleManager extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private JButton btnAdd;
-	private InterfaceItem<Title> pContent;
-	private AbstractCustomTablePanel<Title> pList;
-	
+	private TitlePanel pContent;
+	private TitleTablePanel pList;
 	private TitleService service;
 	
 	public TitleManager() {
@@ -50,7 +49,7 @@ public class TitleManager extends AbstractManager<Title>
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 		
 		pContent = new TitlePanel();
-		contentPane.add((TitlePanel)pContent);
+		contentPane.add(pContent);
 		
 		JPanel pBtns = new JPanel();
 		contentPane.add(pBtns);
@@ -63,7 +62,7 @@ public class TitleManager extends AbstractManager<Title>
 		pBtns.add(btnClear);
 		
 		pList = new TitleTablePanel();
-		((TitleTablePanel)pList).setService(service);
+		pList.setService(service);
 		pList.loadData();
 		contentPane.add(pList);
 		
@@ -178,5 +177,4 @@ public class TitleManager extends AbstractManager<Title>
 		pContent.clearTf();
 		JOptionPane.showMessageDialog(null, title + " 추가했습니다.");
 	}
-
 }
