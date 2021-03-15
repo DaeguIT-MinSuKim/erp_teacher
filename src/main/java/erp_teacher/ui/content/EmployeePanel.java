@@ -25,7 +25,7 @@ import erp_teacher.service.EmployeeService;
 import erp_teacher.ui.exception.InvalidCheckException;
 
 @SuppressWarnings("serial")
-public class EmployeePanel extends InterfaceItem<Employee> implements ItemListener {
+public class EmployeePanel extends AbstractContent<Employee> implements ItemListener {
 	private JTextField tfNo;
 	private JTextField tfName;
 	private JComboBox<Title> cmbTitle;
@@ -54,8 +54,8 @@ public class EmployeePanel extends InterfaceItem<Employee> implements ItemListen
 		cmbTitle.setSelectedIndex(-1);
 	}
 
-	@Override
-	public void initialize() {
+	
+	private void initialize() {
 		setBorder(new TitledBorder(null, "사원 정보", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		setLayout(new BorderLayout(0, 0));
 		
@@ -133,6 +133,7 @@ public class EmployeePanel extends InterfaceItem<Employee> implements ItemListen
 			//직속 상사가 없는 경우 추가
 			if (empList == null) {
 				empList = new ArrayList<>();
+				empList.add(service.getCEO(new Employee(4377)));
 			}
 			DefaultComboBoxModel<Employee> model = new DefaultComboBoxModel<>(new Vector<>(empList));
 			cmbManager.setModel(model);
@@ -167,7 +168,7 @@ public class EmployeePanel extends InterfaceItem<Employee> implements ItemListen
 		if (tfNo.getText().contentEquals("") || tfName.getText().equals("") 
 				|| cmbTitle.getSelectedIndex() == -1 
 				|| cmbDept.getSelectedIndex() == -1
-				|| cmbManager.getSelectedIndex() == -1) {
+         || cmbManager.getSelectedIndex() == -1 ) {
 			throw new InvalidCheckException();
 		}		
 	}

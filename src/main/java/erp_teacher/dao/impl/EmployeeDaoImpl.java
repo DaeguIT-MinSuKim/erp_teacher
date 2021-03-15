@@ -12,6 +12,7 @@ import erp_teacher.database.JdbcConn;
 import erp_teacher.dto.Department;
 import erp_teacher.dto.Employee;
 import erp_teacher.dto.Title;
+import erp_teacher.ui.exception.SqlConstraintException;
 
 public class EmployeeDaoImpl implements EmployeeDao {
 	private static EmployeeDaoImpl instance = new EmployeeDaoImpl();
@@ -112,14 +113,17 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			pstmt.setInt(1, employee.getEmpNo());
 			pstmt.setString(2, employee.getEmpName());
 			pstmt.setInt(3, employee.getTitle().gettNo());
-			pstmt.setInt(4, employee.getManager().getEmpNo());
+		    pstmt.setInt(4, employee.getManager().getEmpNo());
 			pstmt.setInt(5, employee.getSalary());
 			pstmt.setInt(6, employee.getDept().getDeptNo());
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
-			e.printStackTrace();
+		    if (e.getErrorCode() == 1062) {
+		        throw new SqlConstraintException("이미 존재하는 사원번호", e);
+		    }else {
+		        throw new SqlConstraintException(e.getMessage(), e);
+		    }
 		}
-		return 0;
 	}
 
 	@Override
