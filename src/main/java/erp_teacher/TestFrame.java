@@ -9,6 +9,11 @@ import javax.swing.border.EmptyBorder;
 import erp_teacher.ui.list.TitleTablePanel;
 import java.awt.GridLayout;
 import erp_teacher.ui.list.DepartmentTablePanel;
+import javax.swing.BoxLayout;
+
+import erp_teacher.service.EmployeeService;
+import erp_teacher.ui.content.EmployeePanel;
+import javax.swing.JButton;
 
 public class TestFrame extends JFrame {
 
@@ -30,21 +35,29 @@ public class TestFrame extends JFrame {
 	public TestFrame() {
 		initialize();
 	}
+	
 	private void initialize() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 408);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
+		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 		
-		TitleTablePanel panel = new TitleTablePanel();
-		panel.loadData();
-		contentPane.setLayout(new GridLayout(0, 1, 0, 0));
-		contentPane.add(panel);
+		EmployeeService service = new EmployeeService();
+		EmployeePanel pEmpItem = new EmployeePanel();
+		pEmpItem.setService(service);
 		
-		DepartmentTablePanel panel_1 = new DepartmentTablePanel();
-		panel_1.loadData();
-		contentPane.add(panel_1);
+		contentPane.add(pEmpItem);
+		
+		JPanel pBtns = new JPanel();
+		contentPane.add(pBtns);
+		
+		JButton btnAdd = new JButton("추가");
+		pBtns.add(btnAdd);
+		
+		JButton btnCancel = new JButton("취소");
+		pBtns.add(btnCancel);
 	}
 
 }

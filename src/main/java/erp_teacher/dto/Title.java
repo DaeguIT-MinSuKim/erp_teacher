@@ -35,7 +35,7 @@ public class Title {
 
 	@Override
 	public String toString() {
-		return String.format("Title [tNo=%s, tName=%s]", tNo, tName);
+		return String.format("%s(%d)", tName, tNo);
 	}
 
 }
