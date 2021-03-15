@@ -16,7 +16,9 @@ import erp_teacher.dto.Employee;
 import erp_teacher.dto.Title;
 import erp_teacher.service.EmployeeService;
 import erp_teacher.ui.content.EmployeePanel;
+import erp_teacher.ui.list.EmployeeTablePanel;
 
+@SuppressWarnings("serial")
 public class TestFrame extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
@@ -24,6 +26,7 @@ public class TestFrame extends JFrame implements ActionListener {
 	private EmployeePanel pEmpItem;
 	private JButton btnSet;
 	private JButton btnCancel;
+	private EmployeeTablePanel pList;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -70,6 +73,11 @@ public class TestFrame extends JFrame implements ActionListener {
 		btnCancel = new JButton("취소");
 		btnCancel.addActionListener(this);
 		pBtns.add(btnCancel);
+		
+		pList = new EmployeeTablePanel();
+		pList.setService(service);
+		pList.loadData();
+		contentPane.add(pList);
 	}
 
 	public void actionPerformed(ActionEvent e) {

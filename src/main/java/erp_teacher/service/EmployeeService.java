@@ -28,4 +28,8 @@ public class EmployeeService {
 	public List<Employee> showEmployeeByDept(Department dept){
 		return employeeDao.selectEmployeeByDept(dept);
 	}
+	
+	public List<Employee> showEmployees(){
+		return employeeDao.selectEmployeeByAll();
+	}
 }
