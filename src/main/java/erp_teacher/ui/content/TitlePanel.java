@@ -48,6 +48,7 @@ public class TitlePanel extends InterfaceItem<Title>{
 		if (!tfNo.isEditable()) {
 			tfNo.setEditable(true);
 		}
+		
 	}
 
 	@Override

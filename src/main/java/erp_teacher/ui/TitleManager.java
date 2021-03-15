@@ -56,7 +56,8 @@ public class TitleManager extends JFrame implements ActionListener {
 		btnAdd.addActionListener(this);
 		pBtns.add(btnAdd);
 		
-		JButton btnClear = new JButton("취소");
+		btnClear = new JButton("취소");
+		btnClear.addActionListener(this);
 		pBtns.add(btnClear);
 		
 		pList = new TitleTablePanel();
@@ -135,8 +136,12 @@ public class TitleManager extends JFrame implements ActionListener {
 			}
 		}
 	};
+	private JButton btnClear;
 	
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnClear) {
+			actionPerformedBtnClear(e);
+		}
 		try {
 			if (e.getSource() == btnAdd) {
 				if (e.getActionCommand().contentEquals("추가")) {
@@ -174,5 +179,13 @@ public class TitleManager extends JFrame implements ActionListener {
 		pList.loadData();
 		pContent.clearTf();
 		JOptionPane.showMessageDialog(null, title + " 추가했습니다.");
+	}
+	
+	protected void actionPerformedBtnClear(ActionEvent e) {
+		pContent.clearTf();
+		
+		if (btnAdd.getText().contentEquals("수정")) {
+			btnAdd.setText("추가");
+		}
 	}
 }
