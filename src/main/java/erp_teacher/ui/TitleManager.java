@@ -17,19 +17,22 @@ import javax.swing.border.EmptyBorder;
 import erp_teacher.dto.Employee;
 import erp_teacher.dto.Title;
 import erp_teacher.service.TitleService;
+import erp_teacher.ui.content.InterfaceItem;
 import erp_teacher.ui.content.TitlePanel;
 import erp_teacher.ui.exception.InvalidCheckException;
 import erp_teacher.ui.exception.NotSelectedException;
 import erp_teacher.ui.exception.SqlConstraintException;
+import erp_teacher.ui.list.AbstractCustomTablePanel;
 import erp_teacher.ui.list.TitleTablePanel;
 
 @SuppressWarnings("serial")
-public class TitleManager extends JFrame implements ActionListener {
+public class TitleManager extends AbstractManager<Title> 
 
 	private JPanel contentPane;
 	private JButton btnAdd;
-	private TitlePanel pContent;
-	private TitleTablePanel pList;
+	private InterfaceItem<Title> pContent;
+	private AbstractCustomTablePanel<Title> pList;
+	
 	private TitleService service;
 	
 	public TitleManager() {
@@ -47,7 +50,7 @@ public class TitleManager extends JFrame implements ActionListener {
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 		
 		pContent = new TitlePanel();
-		contentPane.add(pContent);
+		contentPane.add((TitlePanel)pContent);
 		
 		JPanel pBtns = new JPanel();
 		contentPane.add(pBtns);
@@ -60,7 +63,7 @@ public class TitleManager extends JFrame implements ActionListener {
 		pBtns.add(btnClear);
 		
 		pList = new TitleTablePanel();
-		pList.setService(service);
+		((TitleTablePanel)pList).setService(service);
 		pList.loadData();
 		contentPane.add(pList);
 		
@@ -99,7 +102,7 @@ public class TitleManager extends JFrame implements ActionListener {
 				
 				if (e.getActionCommand().equals("수정")) {
 					Title updateTitle = pList.getItem();
-					pContent.setTitle(updateTitle);
+					pContent.setItem(updateTitle);
 					btnAdd.setText("수정");
 				}
 				
@@ -160,7 +163,7 @@ public class TitleManager extends JFrame implements ActionListener {
 		//pContent clearTf()호출하여 초기화
 		//btnAdd 텍스트 변경 수정->추가
 		
-		Title updateTitle = pContent.getTitle();
+		Title updateTitle = pContent.getItem();
 		service.modifyTitle(updateTitle);
 		pList.loadData();
 		pContent.clearTf();
@@ -169,10 +172,11 @@ public class TitleManager extends JFrame implements ActionListener {
 	}
 
 	protected void actionPerformedBtnAdd(ActionEvent e) {
-		Title title = pContent.getTitle();
+		Title title = pContent.getItem();
 		service.addTitle(title);
 		pList.loadData();
 		pContent.clearTf();
 		JOptionPane.showMessageDialog(null, title + " 추가했습니다.");
 	}
+
 }

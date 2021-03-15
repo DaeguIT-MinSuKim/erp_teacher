@@ -25,7 +25,7 @@ import erp_teacher.service.EmployeeService;
 import erp_teacher.ui.exception.InvalidCheckException;
 
 @SuppressWarnings("serial")
-public class EmployeePanel extends JPanel implements ItemListener {
+public class EmployeePanel extends InterfaceItem<Employee> implements ItemListener {
 	private JTextField tfNo;
 	private JTextField tfName;
 	private JComboBox<Title> cmbTitle;
@@ -54,7 +54,8 @@ public class EmployeePanel extends JPanel implements ItemListener {
 		cmbTitle.setSelectedIndex(-1);
 	}
 
-	private void initialize() {
+	@Override
+	public void initialize() {
 		setBorder(new TitledBorder(null, "사원 정보", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		setLayout(new BorderLayout(0, 0));
 		
@@ -109,35 +110,7 @@ public class EmployeePanel extends JPanel implements ItemListener {
 		pItem.add(spinSalary);
 	}
 
-	public void setEmployee(Employee employee) {
-		tfNo.setText(employee.getEmpNo() + "");
-		tfName.setText(employee.getEmpName());
-		cmbTitle.setSelectedItem(employee.getTitle());
-		cmbDept.setSelectedItem(employee.getDept());
-		cmbManager.setSelectedItem(employee.getManager());
-		spinSalary.setValue(employee.getSalary());
-	}
-	
-	public Employee getEmployee() {
-		validCheck();
-		int empNo = Integer.parseInt(tfNo.getText().trim());
-		String empName = tfName.getText().trim();
-		Title title = (Title) cmbTitle.getSelectedItem();
-		Employee manager = (Employee) cmbManager.getSelectedItem();
-		int salary = (int) spinSalary.getValue();
-		Department dept = (Department) cmbDept.getSelectedItem();
-		return new Employee(empNo, empName, title, manager, salary, dept);
-	}
-	
-	private void validCheck() {
-		if (tfNo.getText().contentEquals("") || tfName.getText().equals("") 
-				|| cmbTitle.getSelectedIndex() == -1 
-				|| cmbDept.getSelectedIndex() == -1
-				|| cmbManager.getSelectedIndex() == -1) {
-			throw new InvalidCheckException();
-		}
-	}
-
+	@Override
 	public void clearTf() {
 		tfNo.setText("");
 		tfName.setText("");
@@ -165,5 +138,37 @@ public class EmployeePanel extends JPanel implements ItemListener {
 			cmbManager.setModel(model);
 			cmbManager.setSelectedIndex(-1);
 		}
+	}
+
+	@Override
+	public void setItem(Employee item) {
+		tfNo.setText(item.getEmpNo() + "");
+		tfName.setText(item.getEmpName());
+		cmbTitle.setSelectedItem(item.getTitle());
+		cmbDept.setSelectedItem(item.getDept());
+		cmbManager.setSelectedItem(item.getManager());
+		spinSalary.setValue(item.getSalary());		
+	}
+
+	@Override
+	public Employee getItem() {
+		validCheck();
+		int empNo = Integer.parseInt(tfNo.getText().trim());
+		String empName = tfName.getText().trim();
+		Title title = (Title) cmbTitle.getSelectedItem();
+		Employee manager = (Employee) cmbManager.getSelectedItem();
+		int salary = (int) spinSalary.getValue();
+		Department dept = (Department) cmbDept.getSelectedItem();
+		return new Employee(empNo, empName, title, manager, salary, dept);
+	}
+
+	@Override
+	public void validCheck() {
+		if (tfNo.getText().contentEquals("") || tfName.getText().equals("") 
+				|| cmbTitle.getSelectedIndex() == -1 
+				|| cmbDept.getSelectedIndex() == -1
+				|| cmbManager.getSelectedIndex() == -1) {
+			throw new InvalidCheckException();
+		}		
 	}
 }
