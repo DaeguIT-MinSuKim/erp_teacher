@@ -36,8 +36,6 @@ public abstract class AbstractManager<T> extends JFrame implements ActionListene
         tableLoadData();
     }
 
-    protected abstract void setService();
-
     private void initialize() {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 450, 300);
@@ -137,6 +135,8 @@ public abstract class AbstractManager<T> extends JFrame implements ActionListene
         pContent.setItem(updateItem);
         btnAdd.setText("수정");        
     }
+    
+    protected abstract void setService();
     
     protected abstract void tableLoadData();
 
