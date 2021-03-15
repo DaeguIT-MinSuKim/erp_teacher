@@ -22,7 +22,6 @@ public class EmployeeManagerUI extends AbstractManager<Employee> {
     
     @Override
     protected void tableLoadData() {
-       
         ((EmployeeTablePanel) pList).setService(service);
         pList.loadData();        
     }
@@ -70,7 +69,5 @@ public class EmployeeManagerUI extends AbstractManager<Employee> {
         pList.loadData();
         JOptionPane.showMessageDialog(null, delItem + "삭제 되었습니다.");        
     }
-
-
 
 }
