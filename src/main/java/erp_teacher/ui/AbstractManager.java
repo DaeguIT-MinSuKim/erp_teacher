@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.border.EmptyBorder;
 
+import erp_teacher.dto.Department;
 import erp_teacher.ui.content.AbstractContent;
 import erp_teacher.ui.exception.InvalidCheckException;
 import erp_teacher.ui.exception.SqlConstraintException;
@@ -131,6 +132,12 @@ public abstract class AbstractManager<T> extends JFrame implements ActionListene
         }
     }
     
+    protected void actionPerformedMenuUpdate() {
+        T updateItem = pList.getItem();
+        pContent.setItem(updateItem);
+        btnAdd.setText("수정");        
+    }
+    
     protected abstract void tableLoadData();
 
     protected abstract AbstractCustomTablePanel<T> createTable();
@@ -142,8 +149,6 @@ public abstract class AbstractManager<T> extends JFrame implements ActionListene
     protected abstract void actionPerformedBtnAdd(ActionEvent e);
 
     protected abstract void actionPerformedMenuEqualsItem();
-
-    protected abstract void actionPerformedMenuUpdate();
 
     protected abstract void actionPerformedMenuDelete();
 

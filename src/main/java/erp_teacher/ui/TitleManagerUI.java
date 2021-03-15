@@ -78,13 +78,6 @@ public class TitleManagerUI extends AbstractManager<Title> {
     }
 
     @Override
-    protected void actionPerformedMenuUpdate() {
-        Title updateTitle = pList.getItem();
-        pContent.setItem(updateTitle);
-        btnAdd.setText("수정");
-    }
-
-    @Override
     protected void actionPerformedMenuDelete() {
         Title delTitle = pList.getItem();
         service.removeTitle(delTitle);

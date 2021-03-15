@@ -88,13 +88,6 @@ public class DepartmentManagerUI extends AbstractManager<Department> {
     }
 
     @Override
-    protected void actionPerformedMenuUpdate() {
-        Department updateDept = pList.getItem();
-        pContent.setItem(updateDept);
-        btnAdd.setText("수정");        
-    }
-
-    @Override
     protected void actionPerformedMenuDelete() {
         Department delDept = pList.getItem();
         service.removeDepartment(delDept);

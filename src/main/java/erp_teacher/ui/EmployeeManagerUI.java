@@ -64,13 +64,6 @@ public class EmployeeManagerUI extends AbstractManager<Employee> {
     }
 
     @Override
-    protected void actionPerformedMenuUpdate() {
-        Employee updateItem = pList.getItem();
-        pContent.setItem(updateItem);
-        btnAdd.setText("수정");        
-    }
-
-    @Override
     protected void actionPerformedMenuDelete() {
         Employee delItem = pList.getItem();
         service.removeEmployee(delItem);
