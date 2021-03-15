@@ -19,7 +19,6 @@ import erp_teacher.dto.Title;
 import erp_teacher.service.TitleService;
 import erp_teacher.ui.content.TitlePanel;
 import erp_teacher.ui.exception.InvalidCheckException;
-import erp_teacher.ui.exception.NotSelectedException;
 import erp_teacher.ui.exception.SqlConstraintException;
 import erp_teacher.ui.list.TitleTablePanel;
 

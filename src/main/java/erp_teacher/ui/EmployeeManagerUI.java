@@ -4,9 +4,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JOptionPane;
 
-import erp_teacher.dto.Department;
 import erp_teacher.dto.Employee;
-import erp_teacher.dto.Title;
 import erp_teacher.service.EmployeeService;
 import erp_teacher.ui.content.AbstractContent;
 import erp_teacher.ui.content.EmployeePanel;
