@@ -84,7 +84,7 @@ public class EmployeeDetailDaoTest {
 		System.out.println(dao.selectEmployeeDetailByNo(new Employee(1003)));
 	}
 
-	@Test
+//	@Test
 	public void test04DeleteEmployeeDetail() {
 		System.out.printf("%s()%n", "test04DeleteEmployeeDetail");
 		Employee employee = new Employee(1003);

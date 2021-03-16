@@ -4,18 +4,22 @@ import java.util.List;
 
 import erp_teacher.dao.DepartmentDao;
 import erp_teacher.dao.EmployeeDao;
+import erp_teacher.dao.EmployeeDetailDao;
 import erp_teacher.dao.TitleDao;
 import erp_teacher.dao.impl.DepartmentDaoImpl;
 import erp_teacher.dao.impl.EmployeeDaoImpl;
+import erp_teacher.dao.impl.EmployeeDetailDaoImpl;
 import erp_teacher.dao.impl.TitleDaoImpl;
 import erp_teacher.dto.Department;
 import erp_teacher.dto.Employee;
+import erp_teacher.dto.EmployeeDetail;
 import erp_teacher.dto.Title;
 
 public class EmployeeService {
 	private DepartmentDao deptDao = DepartmentDaoImpl.getInstance();
 	private TitleDao titleDao = TitleDaoImpl.getInstance();
 	private EmployeeDao employeeDao = EmployeeDaoImpl.getInstance();
+	private EmployeeDetailDao empDetailDao= EmployeeDetailDaoImpl.getInstance();
 	
 	public List<Department> showDeptList(){
 		return deptDao.selectDepartmentByAll();
@@ -43,6 +47,10 @@ public class EmployeeService {
 	
 	public void addEmployee(Employee employee) {
 		employeeDao.insertEmployee(employee);
+	}
+	
+	public EmployeeDetail showEmpDetailByEmpNo(Employee employee) {
+		return empDetailDao.selectEmployeeDetailByNo(employee);
 	}
 }
 
