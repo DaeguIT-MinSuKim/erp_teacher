@@ -4,6 +4,7 @@ import erp_teacher.dto.Employee;
 import erp_teacher.dto.EmployeeDetail;
 
 public interface EmployeeDetailDao {
+	
 	EmployeeDetail selectEmployeeDetailByNo(Employee employee);
 	
 	int insertEmployeeDetail(EmployeeDetail empDetail);

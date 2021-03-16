@@ -27,6 +27,11 @@ select tname, count(*) as 사원수
 -- 단방향 함수(Hash:MD5)
 select password('aaafdsafjkdsafjksda;fjl;sa'), length(password('aaafdsafjkdsafjksda;fjl;sa')) from dual;
 
+-- emp_detail insert
+INSERT INTO emp_detail(empno, pic, gender, hiredate, pass)
+VALUES(?, ?, ?, ?, ?);
 
+select * from emp_detail;
 
+delete from emp_detail where empno = 1003;
 
