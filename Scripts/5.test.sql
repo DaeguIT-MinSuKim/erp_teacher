@@ -28,5 +28,14 @@ select tname, count(*) as 사원수
 select password('aaafdsafjkdsafjksda;fjl;sa'), length(password('aaafdsafjkdsafjksda;fjl;sa')) from dual;
 
 
+INSERT INTO erp_teacher.emp_detail (empno, pic, gender, hiredate) VALUES(0, ?, 0, '');
 
+INSERT INTO erp_teacher.emp_detail (empno, pic, gender, hiredate, pass) VALUES(0, ?, 0, '', '');
 
+select * from emp_detail;
+
+delete from emp_detail ;
+
+SELECT empno, pic, gender, hiredate, pass
+  FROM emp_detail
+where empno = 1003;
