@@ -29,9 +29,9 @@ public class EmployeeDetailDaoTest {
     }
 
     @Test
-    public void testSelectEmployeeDetailByNo() {
+    public void test02SelectEmployeeDetailByNo() {
         System.out.printf("%s()%n", "testInsertEmployeeDetail");
-        
+
         EmployeeDetail detail = dao.selectEmployeeDetailByNo(new Employee(1003));
         Assert.assertNotNull(detail);
         System.out.println(detail);
@@ -40,27 +40,32 @@ public class EmployeeDetailDaoTest {
     @Test
     public void test01InsertEmployeeDetail() {
         System.out.printf("%s()%n", "testInsertEmployeeDetail");
-        
+
         EmployeeDetail empDetail = new EmployeeDetail(1003, true, new Date(), "test", getImage("noImg.jpg"));
         int res = dao.insertEmployeeDetail(empDetail);
         Assert.assertEquals(1, res);
+
+    }
+
+    @Test
+    public void test03UpdateEmployeeDetail() {
+        fail("Not yet implemented");
+    }
+
+    @Test
+    public void test04DeleteEmployeeDetail() {
+        System.out.printf("%s()%n", "test03DeleteEmployeeDetail");
+
+        Employee employee = new Employee(1003);
+        int res = dao.deleteEmployeeDetail(employee);
         
+        Assert.assertEquals(1, res);
     }
 
-    @Test
-    public void test02UpdateEmployeeDetail() {
-        fail("Not yet implemented");
-    }
-
-    @Test
-    public void test03DeleteEmployeeDetail() {
-        fail("Not yet implemented");
-    }
-    
     private byte[] getImage(String imgName) {
         byte[] pic = null;
-        File file = new File(System.getProperty("user.dir")+File.separator+"images", imgName);
-        try(InputStream is = new FileInputStream(file)){
+        File file = new File(System.getProperty("user.dir") + File.separator + "images", imgName);
+        try (InputStream is = new FileInputStream(file)) {
             pic = new byte[is.available()];
             is.read(pic);
         } catch (FileNotFoundException e) {

@@ -8,7 +8,7 @@ public interface EmployeeDetailDao {
 	
 	int insertEmployeeDetail(EmployeeDetail empDetail);
 	int updateEmployeeDetail(EmployeeDetail empDetail);
-	int deleteEmployeeDetail(EmployeeDetail empDetail);
+	int deleteEmployeeDetail(Employee employee);
 
 }
 

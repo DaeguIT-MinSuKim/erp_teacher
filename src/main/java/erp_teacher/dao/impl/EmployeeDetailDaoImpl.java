@@ -24,11 +24,8 @@ public class EmployeeDetailDaoImpl implements EmployeeDetailDao {
 
     @Override
     public EmployeeDetail selectEmployeeDetailByNo(Employee employee) {
-        String sql = "SELECT empno, pic, gender, hiredate"
-                   + "  FROM emp_detail"  
-                   + " WHERE empno = ?";
-        try (Connection con = JdbcConn.getConnection();
-                PreparedStatement pstmt = con.prepareStatement(sql);) {
+        String sql = "SELECT empno, pic, gender, hiredate" + "  FROM emp_detail" + " WHERE empno = ?";
+        try (Connection con = JdbcConn.getConnection(); PreparedStatement pstmt = con.prepareStatement(sql);) {
             pstmt.setInt(1, employee.getEmpNo());
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
@@ -42,7 +39,7 @@ public class EmployeeDetailDaoImpl implements EmployeeDetailDao {
     }
 
     private EmployeeDetail getEmployeeDetail(ResultSet rs) throws SQLException {
-        //empno, pic, gender, hiredate
+        // empno, pic, gender, hiredate
         int empNo = rs.getInt("empno");
         boolean gender = rs.getBoolean("gender");
         Date hireDate = rs.getTimestamp("hiredate");
@@ -71,13 +68,31 @@ public class EmployeeDetailDaoImpl implements EmployeeDetailDao {
 
     @Override
     public int updateEmployeeDetail(EmployeeDetail empDetail) {
-        // TODO Auto-generated method stub
+        String sql = "UPDATE emp_detail"
+                +    "   SET pic=?, gender=?, hiredate=?, pass=?"  
+                +    " WHERE empno=?";
+        try (Connection con = JdbcConn.getConnection(); PreparedStatement pstmt = con.prepareStatement(sql)) {
+            pstmt.setBytes(1, empDetail.getPic());
+            pstmt.setBoolean(2, empDetail.isGender());
+            pstmt.setTimestamp(3, new Timestamp(empDetail.getHireDate().getTime()));
+            pstmt.setString(4, empDetail.getPass());
+            pstmt.setInt(5, empDetail.getEmpNo());
+            return pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return 0;
     }
 
     @Override
-    public int deleteEmployeeDetail(EmployeeDetail empDetail) {
-        // TODO Auto-generated method stub
+    public int deleteEmployeeDetail(Employee employee) {
+        String sql = "delete " + "  from emp_detail " + " where empno = ?";
+        try (Connection con = JdbcConn.getConnection(); PreparedStatement pstmt = con.prepareStatement(sql)) {
+            pstmt.setInt(1, employee.getEmpNo());
+            return pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return 0;
     }
 

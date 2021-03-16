@@ -39,3 +39,8 @@ delete from emp_detail ;
 SELECT empno, pic, gender, hiredate, pass
   FROM emp_detail
 where empno = 1003;
+
+UPDATE emp_detail
+   SET pic=?, gender=?, hiredate=?, pass=?
+ WHERE empno=?;
+
