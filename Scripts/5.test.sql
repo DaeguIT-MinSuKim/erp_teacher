@@ -22,3 +22,6 @@ select empname, empno, deptno
 select tname, count(*) as 사원수
   from title t left join employee e on t.tno = e.title 
  group by tno;
+ 
+--
+select password('a1a'), length(password('abfafdsafsfsa')) from dual;
