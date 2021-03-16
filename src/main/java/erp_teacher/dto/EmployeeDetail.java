@@ -7,6 +7,7 @@ public class EmployeeDetail {
 	private int empNo;
 	private boolean gender;
 	private Date hireDate;
+	private String pass;
 	private byte[] pic;
 
 	public EmployeeDetail() {
@@ -54,6 +55,14 @@ public class EmployeeDetail {
 
 	public void setPic(byte[] pic) {
 		this.pic = pic;
+	}
+
+	public String getPass() {
+		return pass;
+	}
+
+	public void setPass(String pass) {
+		this.pass = pass;
 	}
 
 	@Override
