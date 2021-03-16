@@ -7,7 +7,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -42,6 +44,10 @@ public class EmployeeDetailDaoTest {
 	public void test01InsertEmployeeDetail() {
 		System.out.printf("%s()%n", "test01InsertEmployeeDetail");
 		
+		Calendar cal = GregorianCalendar.getInstance();
+		cal.getTime();
+		
+//		EmployeeDetail empDetail = new EmployeeDetail(1003, true, cal.getTime(), "1234", getImage("noImg.jpg"));
 		EmployeeDetail empDetail = new EmployeeDetail(1003, true, new Date(), "1234", getImage("noImg.jpg"));
 		int res = dao.insertEmployeeDetail(empDetail);
 		
@@ -65,10 +71,18 @@ public class EmployeeDetailDaoTest {
 
 	@Test
 	public void test03UpdateEmployeeDetail() {
-		fail("Not yet implemented");
+		System.out.printf("%s()%n", "test03UpdateEmployeeDetail");
+		
+		Calendar cal = GregorianCalendar.getInstance();
+		cal.getTime();
+		
+		EmployeeDetail empDetail = new EmployeeDetail(1003, false, cal.getTime(), "1234", getImage("suji.jpg"));
+		int res = dao.updateEmployeeDetail(empDetail);
+		
+		Assert.assertEquals(1, res);
 	}
 
-	@Test
+//	@Test
 	public void test04DeleteEmployeeDetail() {
 		System.out.printf("%s()%n", "test04DeleteEmployeeDetail");
 		Employee employee = new Employee(1003);
