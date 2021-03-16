@@ -11,7 +11,7 @@ import erp_teacher.dto.Title;
 import erp_teacher.ui.exception.InvalidCheckException;
 
 @SuppressWarnings("serial")
-public class TitlePanel extends InterfaceItem<Title>{
+public class TitlePanel extends AbstractContentPanel<Title>{
 	private JTextField tfNo;
 	private JTextField tfName;
 
@@ -19,7 +19,7 @@ public class TitlePanel extends InterfaceItem<Title>{
 		initialize();
 	}
 	
-	public void initialize() {
+	private void initialize() {
 		setBorder(new TitledBorder(null, "직책정보", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		setLayout(new GridLayout(0, 2, 10, 0));
 		
