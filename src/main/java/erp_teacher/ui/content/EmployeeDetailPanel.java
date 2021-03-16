@@ -177,8 +177,8 @@ public class EmployeeDetailPanel extends AbstractContentPanel<EmployeeDetail> im
 	
 	protected void actionPerformedBtnAddPic(ActionEvent e) {
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & PNG & GIF images", "jpg", "png", "gif");
-
         chooser.setFileFilter(filter);
+        
         chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 
         int res = chooser.showOpenDialog(null);
