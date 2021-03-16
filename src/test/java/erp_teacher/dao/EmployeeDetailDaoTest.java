@@ -16,6 +16,7 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import erp_teacher.dao.impl.EmployeeDetailDaoImpl;
+import erp_teacher.dto.Employee;
 import erp_teacher.dto.EmployeeDetail;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -29,7 +30,12 @@ public class EmployeeDetailDaoTest {
 
 	@Test
 	public void test02SelectEmployeeDetailByNo() {
-		fail("Not yet implemented");
+		System.out.printf("%s()%n", "test02SelectEmployeeDetailByNo");
+		
+		EmployeeDetail employeeDetail = dao.selectEmployeeDetailByNo(new Employee(1003));
+		Assert.assertNotNull(employeeDetail);
+		
+		System.out.println(employeeDetail);
 	}
 
 	@Test
@@ -64,7 +70,11 @@ public class EmployeeDetailDaoTest {
 
 	@Test
 	public void test04DeleteEmployeeDetail() {
-		fail("Not yet implemented");
+		System.out.printf("%s()%n", "test04DeleteEmployeeDetail");
+		Employee employee = new Employee(1003);
+		int res = dao.deleteEmployeeDetail(employee);
+		
+		Assert.assertEquals(1, res);
 	}
 
 }

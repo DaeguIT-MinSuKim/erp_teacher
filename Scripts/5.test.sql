@@ -31,7 +31,7 @@ select password('aaafdsafjkdsafjksda;fjl;sa'), length(password('aaafdsafjkdsafjk
 INSERT INTO emp_detail(empno, pic, gender, hiredate, pass)
 VALUES(?, ?, ?, ?, ?);
 
-select * from emp_detail;
+SELECT empno, pic, gender, hiredate, pass FROM emp_detail WHERE empno = 1003;
 
 delete from emp_detail where empno = 1003;
 

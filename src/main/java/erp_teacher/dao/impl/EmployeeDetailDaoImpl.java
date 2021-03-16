@@ -2,8 +2,10 @@ package erp_teacher.dao.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.Date;
 
 import erp_teacher.dao.EmployeeDetailDao;
 import erp_teacher.database.JdbcConn;
@@ -25,8 +27,32 @@ public class EmployeeDetailDaoImpl implements EmployeeDetailDao {
 	
 	@Override
 	public EmployeeDetail selectEmployeeDetailByNo(Employee employee) {
-		// TODO Auto-generated method stub
+		String sql = "SELECT empno, pic, gender, hiredate "
+				   + "  FROM emp_detail "
+				   + " WHERE empno = ?";
+		
+		try(Connection con = JdbcConn.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql)){
+			pstmt.setInt(1, employee.getEmpNo());
+			
+			try(ResultSet rs = pstmt.executeQuery()){
+				if (rs.next()) {
+					return getEmployeeDetail(rs);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return null;
+	}
+
+	private EmployeeDetail getEmployeeDetail(ResultSet rs) throws SQLException {
+		// empno, pic, gender, hiredate, pass
+		int empNo = rs.getInt("empno");
+		boolean gender = rs.getBoolean("gender");
+		Date hireDate = rs.getTimestamp("hiredate");
+		byte[] pic = rs.getBytes("pic");
+		return new EmployeeDetail(empNo, gender, hireDate, pic);
 	}
 
 	@Override
@@ -55,8 +81,17 @@ public class EmployeeDetailDaoImpl implements EmployeeDetailDao {
 
 	@Override
 	public int deleteEmployeeDetail(Employee employee) {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql = "delete "  
+		           + "  from emp_detail "  
+			       + " where empno = ?";
+	try(Connection con = JdbcConn.getConnection();
+			PreparedStatement pstmt = con.prepareStatement(sql)){
+		pstmt.setInt(1, employee.getEmpNo());
+		return pstmt.executeUpdate();
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	return 0;
 	}
 
 }
