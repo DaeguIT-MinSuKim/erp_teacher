@@ -1,12 +1,14 @@
 package erp_teacher.dao;
 
 import erp_teacher.dto.Employee;
+import erp_teacher.dto.EmployeeDetail;
 
 public interface EmployeeDetailDao {
-	Employee selectEmployeeDetailByNo(Employee employee);
 	
-	int insertEmployeeDetail(Employee employee);
-	int updateEmployeeDetail(Employee employee);
+	EmployeeDetail selectEmployeeDetailByNo(Employee employee);
+	
+	int insertEmployeeDetail(EmployeeDetail empDetail);
+	int updateEmployeeDetail(EmployeeDetail empDetail);
 	int deleteEmployeeDetail(Employee employee);
 
 }
