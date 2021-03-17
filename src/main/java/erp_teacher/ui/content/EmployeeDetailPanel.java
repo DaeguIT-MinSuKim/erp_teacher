@@ -52,6 +52,8 @@ public class EmployeeDetailPanel extends AbstractContentPanel<EmployeeDetail> im
 	private JDateChooser dateHire;
 	private JRadioButton rdbtnFemale;
 	private JLabel lblPassConfirm;
+	private JTextField tfEmpNo;
+	private JRadioButton rdbtnMale;
 	
 	public EmployeeDetailPanel() {
 		initialize();
@@ -266,6 +268,5 @@ public class EmployeeDetailPanel extends AbstractContentPanel<EmployeeDetail> im
 			}
 		}
 	};
-	private JTextField tfEmpNo;
-	private JRadioButton rdbtnMale;
+
 }
