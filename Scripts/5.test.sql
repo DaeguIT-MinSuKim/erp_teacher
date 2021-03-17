@@ -36,3 +36,6 @@ SELECT empno, pic, gender, hiredate, pass FROM emp_detail WHERE empno = 1003;
 delete from emp_detail where empno = 1003;
 
 SELECT empno, pic, gender, hiredate, pass FROM emp_detail;
+
+select * from employee;
+
