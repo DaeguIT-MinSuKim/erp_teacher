@@ -1,6 +1,5 @@
 package erp_teacher.dto;
 
-import java.util.Arrays;
 import java.util.Date;
 
 public class EmployeeDetail {
