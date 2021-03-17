@@ -1,7 +1,8 @@
 package erp_teacher.ui;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,8 +14,6 @@ import erp_teacher.dto.Employee;
 import erp_teacher.dto.EmployeeDetail;
 import erp_teacher.service.EmployeeDetailService;
 import erp_teacher.ui.content.EmployeeDetailPanel;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class EmployeeDetailUI extends JFrame implements ActionListener {
